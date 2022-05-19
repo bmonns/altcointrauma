@@ -11,17 +11,20 @@ def getprice_postifttt():
         price_url = 'https://api.coingecko.com/api/v3/coins/zookeeper?localization=false&tickers=false&market_data=true'
         response = requests.get(price_url)
 
+        print("Enter IFTTT Key: ",end='')
+        key = input()
+
         #currency prices
         current_usd = response.json()['market_data']['current_price']['usd']
         current_rub = response.json()['market_data']['current_price']['rub']
 
-        ifttt_url = 'https://maker.ifttt.com/trigger/test_event/with/key/cu-0QxWSdbV5uQRZTdr8Ol'
+        ifttt_url = 'https://maker.ifttt.com/trigger/test_event/with/key/' + key
         data = {
             "value1":current_usd,
             "value2":current_rub
             }
         requests.post(ifttt_url, json=data)
-        print('Post Completed')
+        print("Post call made successfully")
         time.sleep(21600)
 
 getprice_postifttt()
