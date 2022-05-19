@@ -21,6 +21,7 @@ def getprice_postifttt():
             "value2":current_rub
             }
         requests.post(ifttt_url, json=data)
+        print('Post Completed')
         time.sleep(21600)
 
 getprice_postifttt()
